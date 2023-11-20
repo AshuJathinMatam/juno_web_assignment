@@ -17,12 +17,12 @@ function App() {
   
   return (
     <div className="flex w-screen h-screen">
-      <Sidebar />
-      <div className="ml-16 gap-4 flex flex-col items-start justify-start">
+      <Sidebar/>
+      <div className="md:mx-8 gap-4 md:flex flex-col items-start justify-start mx-3 ">
         <>
-          <div className="px-5 w-full flex flex-col gap-5">
-            <h1 className="font-semibold text-3xl my-2">Monitoring</h1>
-            <div className="flex justify-between border-b-grey-500 border-b-2 text-grey-500 mb-5">
+          <div className=" w-full flex flex-col gap-5">
+            <h1 className="font-semibold text-3xl my-2 text-center md:text-start">Monitoring</h1>
+            <div className="flex md:justify-between justify-center border-b-grey-500 border-b-2 text-grey-500 mb-5">
               <div className="flex items-end">
                 <a
                   className={`mx-2 pb-2 px-2 ${activeComponent === "Pending" ? active : inactive
@@ -39,7 +39,7 @@ function App() {
                   Completed
                 </a>
               </div>
-              <div onClick={() => setCloseAccountModal(true)} className="text-red-500 flex items-center px-3 py-1 mb-2 rounded-lg cursor-pointer bg-red-100">
+              <div onClick={() => setCloseAccountModal(true)} className="text-red-500 md:flex hidden items-center px-3 py-1 mb-2 rounded-lg cursor-pointer bg-red-100">
                 <span className="mr-1">
                   <RxCrossCircled />
                 </span>
@@ -50,7 +50,7 @@ function App() {
           {closeAccountModal && <CloseAccountModal onClose={() => setCloseAccountModal(false)} />}
         </>
         {
-          activeComponent==='Pending'?<PendingUserTable/>:<CompletedUserTable/>
+          activeComponent==='Pending'?<PendingUserTable onOpen={() => setCloseAccountModal(true)}/>:<CompletedUserTable onOpen={() => setCloseAccountModal(true)}/>
         }
       </div>
     </div>
